@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Image, Switch } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
-
-
-
-
 class CalculatorScreen extends Component {
 
 constructor() {
@@ -20,7 +16,6 @@ constructor() {
     switchValue:false,
     expanded:false,
     history:[],
-    splitHistory:''
   }
   this.operations= ['+', '-', '*', '/']
 
@@ -132,11 +127,6 @@ operate(operation) {
   }
 }
 
-displayHistory(){
-    const splitList= this.state.history.split(',').join('\n')
-    this.setState({splitHistory:splitList})
-}
-
 
 
   render(){
@@ -233,72 +223,70 @@ displayHistory(){
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  topbar: {
-    flex: 1,
-    backgroundColor: 'rgb(100,83,144)',
-    borderBottomColor:'rgb(50,38,80)',
-    borderWidth:10,
-    flexDirection:'row'
-    
-  },
-  altTopbar: {
-    flex: 1,
-    backgroundColor: 'rgb(56,206,213)',
-    borderBottomColor:'rgb(50,38,80)',
-    borderWidth:10,
-    flexDirection:'row'
-    
-  },
-  expandedView:{
-    width:'100%',
-    height:'50%',
-    backgroundColor:'black'
-  },
-  shrinkView:{
-    width:'100%',
-    height:0
-  },
-  numberDisplay: {
-    flex: 2,
-    backgroundColor:'rgb(67,50,110)',
+altButton:{
+    backgroundColor:'rgb(110,147,116)',
+    alignItems:'center',
     justifyContent:'center',
-    alignItems:'flex-end',
-    borderBottomColor:"white",
+    height:undefined,
+    width:'23%',
+    borderRadius:'50%',
+    padding:10,
+    borderColor:'white',
     borderWidth:2,
-  
-  },
-  altNumberDisplay: {
+    },
+altClearButton:{
+    backgroundColor:'rgb(110,147,116)',
+    alignItems:'center',
+    justifyContent:'center',
+    height:undefined,
+    width:'23%',
+    borderRadius:'50%',
+    padding:10,
+    borderColor:'rgb(250,214,82)',
+    borderWidth:2,
+    },
+altNumberDisplay: {
     flex: 2,
     backgroundColor:'rgb(56,213,142)',
     justifyContent:'center',
     alignItems:'flex-end',
     borderBottomColor:"white",
+    borderWidth:2,  
+    },
+altRows: {
+    flex:1,
+    flexDirection: 'row',
+    backgroundColor:'rgb(110,147,116)',
+    justifyContent:'space-around',
+    alignitems:'center',
+    paddingTop:3
+    },
+altTopbar: {
+    flex: 1,
+    backgroundColor: 'rgb(56,206,213)',
+    borderBottomColor:'rgb(50,38,80)',
+    borderWidth:10,
+    flexDirection:'row'
+    },
+button:{
+    backgroundColor:'rgb(67,50,110)',
+    alignItems:'center',
+    justifyContent:'center',
+    height:undefined,
+    width:'23%',
+    borderRadius:'50%',
+    padding:10,
+    borderColor:'white',
     borderWidth:2,
-  
-  },
-  buttonContainer: {
+    },
+buttonContainer: {
     flex: 3,
-  },
-  rows: {
-    flex:1,
-    flexDirection: 'row',
-    backgroundColor:'rgb(67,50,110)',
-    justifyContent:'space-around',
-    alignitems:'center',
-    paddingTop:3
-  },
-  altRows: {
-    flex:1,
-    flexDirection: 'row',
-    backgroundColor:'rgb(110,147,116)',
-    justifyContent:'space-around',
-    alignitems:'center',
-    paddingTop:3
-  },
-  button:{
+    },
+buttonText:{
+    fontSize:30,
+    color:'white'
+    },
+clearButton:{
     backgroundColor:'rgb(67,50,110)',
     alignItems:'center',
     justifyContent:'center',
@@ -306,21 +294,30 @@ const styles = StyleSheet.create({
     width:'23%',
     borderRadius:'50%',
     padding:10,
-    borderColor:'white',
+    borderColor:'rgb(250,214,82)',
     borderWidth:2,
+    },
+container: {
+    flex: 1,
   },
-  altButton:{
-    backgroundColor:'rgb(110,147,116)',
-    alignItems:'center',
+displayText:{
+    fontSize:30,
+    color:'white',
+  },
+expandedView:{
+    width:'100%',
+    height:'50%',
+    backgroundColor:'black'
+  },
+numberDisplay: {
+    flex: 2,
+    backgroundColor:'rgb(67,50,110)',
     justifyContent:'center',
-    height:undefined,
-    width:'23%',
-    borderRadius:'50%',
-    padding:10,
-    borderColor:'white',
+    alignItems:'flex-end',
+    borderBottomColor:"white",
     borderWidth:2,
   },
-  operationButton:{
+operationButton:{
     backgroundColor:'rgb(250,214,82)',
     alignItems:'center',
     justifyContent:'center',
@@ -328,31 +325,12 @@ const styles = StyleSheet.create({
     width:'23%',
     borderRadius:'50%',
     padding:10,
-
   },
-  clearButton:{
-    backgroundColor:'rgb(67,50,110)',
-    alignItems:'center',
-    justifyContent:'center',
-    height:undefined,
-    width:'23%',
-    borderRadius:'50%',
-    padding:10,
-    borderColor:'rgb(250,214,82)',
-    borderWidth:2,
+operationButtonText:{
+    fontSize:20,
+    color:'rgb(67,50,110)'
   },
-  altClearButton:{
-    backgroundColor:'rgb(110,147,116)',
-    alignItems:'center',
-    justifyContent:'center',
-    height:undefined,
-    width:'23%',
-    borderRadius:'50%',
-    padding:10,
-    borderColor:'rgb(250,214,82)',
-    borderWidth:2,
-  },
-  pressedOperationButton:{
+pressedOperationButton:{
     backgroundColor:'white',
     alignItems:'center',
     justifyContent:'center',
@@ -363,18 +341,25 @@ const styles = StyleSheet.create({
     borderColor:'white',
     borderWidth:2,
   },
-  displayText:{
-    fontSize:30,
-    color:'white',
+rows: {
+    flex:1,
+    flexDirection: 'row',
+    backgroundColor:'rgb(67,50,110)',
+    justifyContent:'space-around',
+    alignitems:'center',
+    paddingTop:3
   },
-  buttonText:{
-    fontSize:30,
-    color:'white'
+shrinkView:{
+    width:'100%',
+    height:0
   },
-  operationButtonText:{
-    fontSize:20,
-    color:'rgb(67,50,110)'
-  }
+topbar: {
+    flex: 1,
+    backgroundColor: 'rgb(100,83,144)',
+    borderBottomColor:'rgb(50,38,80)',
+    borderWidth:10,
+    flexDirection:'row'
+  },
 });
 
 export default CalculatorScreen;
